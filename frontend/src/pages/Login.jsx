@@ -128,7 +128,7 @@ function Login() {
               <button
                 type="button"
                 onClick={onClick}
-                className="bg-black h-14 w-2/5  text-white text-center font-medium rounded-lg  px-1 py-1 md:w-1/2 hover:scale-105 duration-300 border-black hover:opacity-100 border-2"
+                className="bg-gray-700 h-14 w-2/5  text-white text-center font-medium rounded-lg  px-1 py-1 md:w-1/2 hover:scale-105 duration-300 border-black hover:opacity-100 border-2"
               >
                 Déconnexion
               </button>{" "}

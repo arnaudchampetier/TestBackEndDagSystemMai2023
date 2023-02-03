@@ -56,7 +56,7 @@ INSERT INTO user (firstname, lastname, email, city, phone, hashedPassword, isAdm
 ('boss', 'boss', 'boss@gmail.com', 'Lyon', '0600000001', 'boss', '1', 'monavatar1.png', '2022-10-18 12:12:23', '1');
 
 
-
+/*
 
 DROP TABLE IF EXISTS reservation; 
 
@@ -78,3 +78,5 @@ INSERT INTO reservation (user_id, cook_id) VALUES ('1', '1'),
 ('2', '3'),
 ('2', '4'),
 ('2', '5');
+  
+  */

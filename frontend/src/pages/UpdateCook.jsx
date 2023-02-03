@@ -36,6 +36,7 @@ function UpdateCook() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { id } = selectedCook;
+    console.warn("coucou", { id });
 
     fetch(`http://localhost:5000/api/cook/${id}`, {
       method: "PUT",
