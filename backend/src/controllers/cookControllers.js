@@ -31,7 +31,7 @@ const add = (req, res) => {
   const cook = req.body;
   // cook.user_id = req.payloads.sub;
 
-  models.vehicle
+  models.cook
     .insert(cook)
     .then(([result]) => {
       res.location(`/api/cook/${result.insertId}`).sendStatus(201);
@@ -45,9 +45,9 @@ const add = (req, res) => {
 
 const edit = (req, res) => {
   const cook = req.body;
-  cook.id = req.params.id;
+  cook.id = parseInt(req.params.id, 10);
 
-  models.vehicle
+  models.cook
     .update(cook)
     .then(([result]) => {
       if (result.affectedRows === 0) res.sendStatus(404);

@@ -8,7 +8,7 @@ class CookManager extends AbstractManager {
   insert(cook) {
     return this.connection.query(
       `INSERT INTO ${this.table} (fullName, distinctions, menu, price,quote, localisation)
-    VALUES(?, ?, ?, ?, ?)`,
+    VALUES(?, ?, ?, ?, ?, ?)`,
       [
         cook.fullName,
         cook.distinctions,
@@ -22,7 +22,7 @@ class CookManager extends AbstractManager {
 
   update(cook) {
     return this.connection.query(
-      `UPDATE ${this.table} SET fullName = ?, distinctions = ?,
+      `update ${this.table} set fullName = ?, distinctions = ?,
       menu = ?, price = ?, quote = ?, localisation= ?, isAvailable = ? WHERE id = ? `,
       [
         cook.fullName,
@@ -32,8 +32,15 @@ class CookManager extends AbstractManager {
         cook.quote,
         cook.localisation,
         cook.isAvailable,
+        cook.id,
       ]
     );
+  }
+
+  delete(id) {
+    return this.connection.query(`delete from ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 }
 

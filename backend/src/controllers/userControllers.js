@@ -35,7 +35,7 @@ const add = (req, res) => {
   models.user
     .insert(user)
     .then(([result]) => {
-      res.location(`/api/users/${result.insertId}`).sendStatus(201);
+      res.location(`/api/register/${result.insertId}`).sendStatus(201);
     })
     .catch((error) => {
       console.error(error);
