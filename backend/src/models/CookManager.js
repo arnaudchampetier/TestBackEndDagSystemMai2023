@@ -23,7 +23,7 @@ class CookManager extends AbstractManager {
   update(cook) {
     return this.connection.query(
       `update ${this.table} set fullName = ?, distinctions = ?,
-      menu = ?, price = ?, quote = ?, localisation= ?, isAvailable = ? WHERE id = ? `,
+      menu = ?, price = ?, quote = ?, localisation= ? WHERE id = ? `,
       [
         cook.fullName,
         cook.distinctions,
@@ -31,7 +31,6 @@ class CookManager extends AbstractManager {
         cook.price,
         cook.quote,
         cook.localisation,
-        cook.isAvailable,
         cook.id,
       ]
     );

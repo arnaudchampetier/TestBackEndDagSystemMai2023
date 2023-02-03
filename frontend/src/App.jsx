@@ -7,10 +7,10 @@ import Offers from "./pages/Offers";
 import DashboardAdmin from "./pages/DashboardAdmin";
 import AddCook from "./pages/AddCook";
 import DeleteCook from "./pages/DeleteCook";
-import UpdateCook from "./pages/UpdateCook";
 import WorkInProgress from "./pages/WorkInProgress";
-
+import CookList from "./pages/CookList";
 import "./App.css";
+import EditCook from "./pages/EditCook";
 
 function App() {
   return (
@@ -24,8 +24,9 @@ function App() {
           <Route path="/dashboard" element={<DashboardAdmin />} />
           <Route path="/addcook" element={<AddCook />} />
           <Route path="/deletecook" element={<DeleteCook />} />
-          <Route path="/updatecook" element={<UpdateCook />} />
+          <Route path="/cooklist" element={<CookList />} />
           <Route path="/workinprogress" element={<WorkInProgress />} />
+          <Route path="/editcook/:id" element={<EditCook />} />
         </Routes>
       </BrowserRouter>
     </CurrentUserContextProvider>

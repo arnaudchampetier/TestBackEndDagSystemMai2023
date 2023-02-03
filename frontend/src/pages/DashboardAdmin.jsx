@@ -59,7 +59,7 @@ function DashboardAdmin() {
       <button
         type="button"
         className="text-black bg-white hover:scale-110  md:w-1/4 mx-auto flex rounded-lg py-4 px-4 hover:bg-blue-700 text-center mt-4 text-xl mb-4 w-1/2"
-        onClick={() => navigate("/updatecook")}
+        onClick={() => navigate("/cooklist")}
       >
         Modifier fiche Cuisinier
       </button>
