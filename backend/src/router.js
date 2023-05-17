@@ -1,56 +1,19 @@
 const express = require("express");
 
-// Ajout de multer
-const multer = require("multer");
-
 const router = express.Router();
 
-// On définit la destination de stockage de nos fichiers
-// const upload = multer({ dest: process.env.AVATAR_DIRECTORY });
-// On définit la destination de stockage de nos fichiers
-const upload = multer({ dest: "public/uploads/" });
+const EventController = require("./controllers/eventControllers");
+const ActivityController = require("./controllers/activityControllers");
 
-// services d'auth
-const {
-  hashPassword,
-  verifyPassword,
-  verifyToken,
-} = require("./services/auth");
+//  routes des événements
+router.post("/api/events", EventController.add); // Consigne 1 :  Créer un événement
+router.get("/api/events", EventController.browse); // Récyperer tous les événements
 
-const authControllers = require("./controllers/authControllers");
-const userControllers = require("./controllers/userControllers");
-const cookControllers = require("./controllers/cookControllers");
-const fileControllers = require("./controllers/fileControllers");
+//  routes des activités
+router.post("/api/events/:eventId/activities", ActivityController.add); // Consigne 2 : Créer une activité liée à un événement
+router.get("/api/activities/search", ActivityController.searchByName); // Consigne 3 : Rechercher une activité par nom
+router.get("/api/activities", ActivityController.browse); // Consigne 3 : récupérer ttes les activités
 
-// Auth
-router.post("/api/register", hashPassword, userControllers.add);
-router.post(
-  "/api/login",
-  authControllers.getUserByEmailWithPasswordAndPassToNext,
-  verifyPassword
-);
-
-// Gestion des Users
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
-router.put("/users/:id", hashPassword, userControllers.edit);
-router.post("/users", hashPassword, userControllers.add);
-router.delete("/users/:id", verifyToken, userControllers.destroy);
-
-// Gestion des Cooks
-router.get("/cook", cookControllers.browse);
-router.get("/cook/:id", cookControllers.read);
-router.put("/api/cook/:id", verifyToken, cookControllers.edit);
-router.post("/api/cook", cookControllers.add);
-router.delete("/cook/:id", verifyToken, cookControllers.destroy);
-
-// Gestion des avatars
-
-router.put(
-  "/api/avatars",
-  upload.single("profilePicture"),
-  fileControllers.renameAvatar,
-  userControllers.updateAvatar
-);
+router.get("/api/events/sorted", EventController.searchByDate); // Consigne 4 : Trier les évènements pra leur date de debut
 
 module.exports = router;
