@@ -13,7 +13,7 @@ router.get("/api/events", EventController.browse); // Récyperer tous les évén
 router.post("/api/events/:eventId/activities", ActivityController.add); // Consigne 2 : Créer une activité liée à un événement
 router.get("/api/activities/search", ActivityController.searchByName); // Consigne 3 : Rechercher une activité par nom
 router.get("/api/activities", ActivityController.browse); // Consigne 3 : récupérer ttes les activités
-
+router.delete("/api/events/:id", EventController.destroy); // rajouté : Supprimer une activité
 router.get("/api/events/sorted", EventController.searchByDate); // Consigne 4 : Trier les évènements pra leur date de debut
 
 module.exports = router;

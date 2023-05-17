@@ -23,10 +23,10 @@ function FilterEventByDate() {
   return (
     <div className="flex flex-col mt-12 mb-48">
       <h2 className="text-2xl font-bold mb-12 text-center">
-        Événements triés par date de début
+        Événements triés par date de début :
       </h2>
       {sortedEvents.length > 0 ? (
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mx-64 space-x-4">
+        <ul className="flex flex-col gap-4 mx-64 space-x-4">
           {sortedEvents.map((event) => (
             <li key={event.id} className="bg-white shadow-md p-4 rounded-lg">
               <h3 className="text-lg font-bold mb-2">{event.nom}</h3>

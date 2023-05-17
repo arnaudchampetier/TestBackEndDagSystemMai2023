@@ -38,6 +38,12 @@ class EventManager extends AbstractManager {
       [event.nom, event.lieu, event.id]
     );
   }
+
+  delete(id) {
+    return this.connection.query(`delete from ${this.table} where id = ?`, [
+      id,
+    ]);
+  }
 }
 
 module.exports = EventManager;

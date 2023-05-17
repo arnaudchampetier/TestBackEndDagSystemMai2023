@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 function CreateActivityByEvent({ eventId }) {
   const [nom, setNom] = useState("");
   const [dateDeCreation, setDateDeCreation] = useState("");
   const [dateDeDebut, setDateDeDebut] = useState("");
+  const [evenements, setEvenements] = useState([]);
+  const [selectedEvenement, setSelectedEvenement] = useState(null);
+
+  useEffect(() => {
+    // Récupérer la liste des événements disponibles
+    fetch("http://localhost:5000/api/events")
+      .then((response) => response.json())
+      .then((data) => {
+        setEvenements(data);
+        setSelectedEvenement(eventId);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la récupération des événements", error);
+      });
+  }, [eventId]);
 
   const handleNomChange = (e) => {
     setNom(e.target.value);
@@ -18,6 +33,10 @@ function CreateActivityByEvent({ eventId }) {
     setDateDeDebut(e.target.value);
   };
 
+  const handleEvenementChange = (e) => {
+    setSelectedEvenement(parseInt(e.target.value, 10));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -25,11 +44,11 @@ function CreateActivityByEvent({ eventId }) {
       nom,
       date_de_creation: dateDeCreation,
       date_de_debut: dateDeDebut,
-      evenement: eventId,
+      evenement: selectedEvenement,
     };
 
     // Envoyer la requête POST pour créer l'activité
-    fetch(`http://localhost:5000/api/events/${eventId}/activities`, {
+    fetch(`http://localhost:5000/api/events/${selectedEvenement}/activities`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -38,26 +57,41 @@ function CreateActivityByEvent({ eventId }) {
     })
       .then((response) => {
         if (response.status === 201) {
-          // Activité créée avec succès
+          // Activité créée avec sucès
           console.warn("Activité créée !");
-          // Réinitialiser les champs du formulaire
           setNom("");
           setDateDeCreation("");
           setDateDeDebut("");
         } else {
-          // Erreur lors de la création de l'activité
-          console.error("Erreur lors de la création de l'activité");
+          // Erreeur lors de la création de l'activité
+          console.error("Erreur  création activité");
         }
       })
       .catch((error) => {
         console.error("Erreur lors de la création de l'activité", error);
       });
   };
-
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl p-6 shadow-md mt-12">
-      <h2 className="text-2xl font-bold mb-4">Créer une activité</h2>
+      <h2 className="text-2xl font-bold mb-4">Ajouter une activité</h2>
       <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="evenement" className="block text-gray-700">
+            Événement :
+          </label>
+          <select
+            id="evenement"
+            value={selectedEvenement}
+            onChange={handleEvenementChange}
+            className="border border-gray-400 px-4 py-2 rounded w-full"
+          >
+            {evenements.map((evenement) => (
+              <option key={evenement.id} value={evenement.id}>
+                {evenement.nom}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className="mb-4">
           <label htmlFor="nom" className="block text-gray-700">
             Nom de l'activité:
@@ -107,7 +141,6 @@ function CreateActivityByEvent({ eventId }) {
     </div>
   );
 }
-
 CreateActivityByEvent.propTypes = {
   eventId: PropTypes.number.isRequired,
 };
