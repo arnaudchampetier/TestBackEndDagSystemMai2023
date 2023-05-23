@@ -25,6 +25,13 @@ function EventList() {
     fetchActivities();
   }, []);
 
+  // Fonction pour formater la date au format souhaité
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="mx-auto sm:max-w-screen-sm lg:max-w-screen-2xl  px-4 py-8 bg-red-100 mt-8 rounded-xl">
       <h1 className="text-2xl font-bold mb-6 text-center">
@@ -41,7 +48,7 @@ function EventList() {
                 <h2 className="text-lg font-semibold">{activity.nom}</h2>
                 <p className="text-gray-600">Lieu : {activity.lieu}</p>
                 <p className="text-gray-600">
-                  Date de début : {activity.date_de_debut}
+                  Date de début : {formatDate(activity.date_de_debut)}
                 </p>
                 <p className="text-gray-600">
                   Nombre de participants : {activity.nombre_de_participants}

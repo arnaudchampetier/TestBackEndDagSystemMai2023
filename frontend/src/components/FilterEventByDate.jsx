@@ -20,27 +20,36 @@ function FilterEventByDate() {
     fetchSortedEvents();
   }, []);
 
+  // Fonction pour formater la date au format souhaité
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return date.toLocaleDateString(undefined, options);
+  };
+
   return (
     <div className="flex flex-col mt-12 mb-48">
       <h2 className="text-2xl font-bold mb-12 text-center">
         Événements triés par date de début :
       </h2>
       {sortedEvents.length > 0 ? (
-        <ul className="flex flex-col gap-4 mx-64 space-x-4">
+        <div className="flex flex-col mx-8">
           {sortedEvents.map((event) => (
-            <li key={event.id} className="bg-white shadow-md p-4 rounded-lg">
+            <div
+              key={event.id}
+              className="bg-white shadow-md p-4 rounded-lg mb-4 flex flex-col w-full"
+            >
               <h3 className="text-lg font-bold mb-2">{event.nom}</h3>
               <p className="text-gray-600 mb-2">Lieu : {event.lieu}</p>
               <p className="text-gray-600 mb-2">
-                Date de début : {event.date_de_debut}
+                Date de début : {formatDate(event.date_de_debut)}
               </p>
-
               <p className="text-gray-600">
                 Nombre de participants : {event.nombre_de_participants}
               </p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       ) : (
         <p>Aucun événement trouvé.</p>
       )}
