@@ -35,7 +35,7 @@ function App() {
   };
 
   return (
-    <div className="bg-gray-100 flex flex-col items-center justify-center">
+    <div className="bg-blue-100 flex flex-col items-center justify-center">
       <h1 className="text-2xl font-bold text-center mt-12 mb-12 uppercase">
         Test technique Back-End DAG
       </h1>
@@ -72,6 +72,13 @@ function App() {
           codé d'applications en l'utilisant, même si je sais ce que c'est et
           que c'est très utile notamment pour des projets avec beaucoup de
           lignes de code. Merci !
+        </p>
+        <p>
+          Nb : suite à nos échanges j'ai ajouté un bouton pour supprimer un
+          événement et j'ai corrigé quelques défauts évoqués ensemble, notamment
+          le fait que l'activité ne s'affichait pas tout de suite après sa
+          création ainsi que quelques corrections de styles de cards, formatage
+          de dates, etc.
         </p>
       </div>
 
