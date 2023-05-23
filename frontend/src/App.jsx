@@ -5,10 +5,11 @@ import FindActivityByName from "./components/FindActivityByName";
 import Logo from "./assets/DAGLOGO.png";
 import CreateActivityByEvent from "./components/CreateActivityByEvent";
 import FilterEventByDate from "./components/FilterEventByDate";
+import DeleteEvent from "./components/DeleteEvent";
 
 function App() {
   const [events, setEvents] = useState([]);
-  const [selectedEventId, setSelectedEventId] = useState([]);
+  const [selectedEventId, setSelectedEventId] = useState(1);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -26,6 +27,11 @@ function App() {
 
   const handleEventSelect = (eventId) => {
     setSelectedEventId(eventId);
+  };
+
+  const handleEventDelete = (deletedEventId) => {
+    setEvents(events.filter((event) => event.id !== deletedEventId));
+    setSelectedEventId(null);
   };
 
   return (
@@ -79,6 +85,9 @@ function App() {
       <div className="flex justify-center space-x-24">
         <CreateEvent />
         {selectedEventId && <CreateActivityByEvent eventId={selectedEventId} />}
+        {selectedEventId && (
+          <DeleteEvent events={events} onDelete={handleEventDelete} />
+        )}
       </div>
       <FilterEventByDate />
       <h2 className="text-2xl font-bold mb-12 text-center">
