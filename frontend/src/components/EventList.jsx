@@ -26,19 +26,19 @@ function EventList() {
   }, []);
 
   return (
-    <div className="mx-48 px-4 py-8 bg-red-100 mt-8">
+    <div className="mx-auto sm:max-w-screen-sm lg:max-w-screen-2xl  px-4 py-8 bg-red-100 mt-8 rounded-xl">
       <h1 className="text-2xl font-bold mb-6 text-center">
         Liste des événements
       </h1>
-      <div className="carousel">
-        {activities.length > 0 ? (
-          <div className="flex overflow-x-auto">
-            {activities.map((activity) => (
+      <div className="carousel overflow-x-auto">
+        <div className="flex">
+          {activities.length > 0 ? (
+            activities.map((activity) => (
               <div
                 key={activity.id}
-                className="card bg-red-200 mx-2 shadow rounded-lg px-6 py-4 mb-4"
+                className="card bg-red-200 flex-shrink-0 w-64 mx-2 shadow rounded-lg px-6 py-4 mb-4"
               >
-                <h2 className="text-l font-semibold">{activity.nom}</h2>
+                <h2 className="text-lg font-semibold">{activity.nom}</h2>
                 <p className="text-gray-600">Lieu : {activity.lieu}</p>
                 <p className="text-gray-600">
                   Date de début : {activity.date_de_debut}
@@ -48,11 +48,11 @@ function EventList() {
                 </p>
                 <p className="text-gray-600">Activité : {activity.activite}</p>
               </div>
-            ))}
-          </div>
-        ) : (
-          <p>Aucun événement trouvé.</p>
-        )}
+            ))
+          ) : (
+            <p>Aucun événement trouvé.</p>
+          )}
+        </div>
       </div>
     </div>
   );

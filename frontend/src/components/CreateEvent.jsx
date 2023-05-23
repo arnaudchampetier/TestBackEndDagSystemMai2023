@@ -40,7 +40,7 @@ function CreateEvent() {
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-xl p-6 shadow-md mt-12">
-      <h2 className="text-2xl font-bold mb-4">Créer un événement</h2>
+      <h4 className="text-2xl font-bold mb-4">Créer un événement</h4>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="eventName" className="block text-gray-700">
