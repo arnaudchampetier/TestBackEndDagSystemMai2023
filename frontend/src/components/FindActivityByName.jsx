@@ -29,12 +29,12 @@ function FindActivityByName() {
 
   return (
     <div>
-      <div className="flex justify-center items-center py-8  flex-col bg-gray-200 mt-12 mx-48 rounded-xl">
-        <h1 className="text-md font-bold mb-6 text-center">
+      <div className="flex flex-col items-center justify-center py-8 bg-gray-200 mt-12 mx-48 rounded-xl">
+        <h3 className="text-md font-bold mb-6 text-center w-96">
           Rechercher une activité
-        </h1>
+        </h3>
         <input
-          className="w-64 px-4 py-2 rounded-xl border-r-0 bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-80  px-4 py-2 rounded-xl border-r-0 bg-blue-200 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           type="text"
           placeholder="Trouver une activité"
           onChange={handleSearchTerm}
