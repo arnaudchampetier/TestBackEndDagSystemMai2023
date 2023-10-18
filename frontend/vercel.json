@@ -1,0 +1,28 @@
+{
+    "name": "frontend-app",
+    "version": 2,
+    "builds": [
+      {
+        "src": "frontend/package.json",
+        "use": "@vercel/static-build",
+        "config": { "root": "frontend" }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/(.*\\.(js|css|jpg|png|svg))$",
+        "dest": "frontend/$1"
+      },
+      {
+        "handle": "filesystem"
+      },
+      {
+        "src": "/.*",
+        "dest": "frontend/index.html"
+      }
+    ],
+    "env": {
+      "VITE_BACKEND_URL": "http://localhost:5000"
+    }
+  }
+  
